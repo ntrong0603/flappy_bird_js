@@ -46,6 +46,8 @@ pipe[0] = {
     y: 0
 };
 
+let endGame = false;
+
 document.addEventListener("keydown", moveUp);
 
 function moveUp() {
@@ -54,6 +56,10 @@ function moveUp() {
 }
 
 function draw() {
+
+    if (endGame) {
+        return;
+    }
 
     ctx.drawImage(bg, 0, 0);
 
@@ -73,10 +79,18 @@ function draw() {
             });
         }
 
+        if(pipe[i].x < -(pipeNorth.width)) {
+            pipe.shift();
+        }
+
         // detect collision
 
         if (bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY + bird.height >= pipe[i].y + constant) || bY + bird.height >= cvs.height - fg.height) {
-            location.reload(); // reload the page
+            endGame = true;
+        }
+
+        if(bY >= (cvs.height - fg.height)) {
+            endGame = true;
         }
 
         if (pipe[i].x == 5) {
