@@ -24,7 +24,7 @@ scor.src = "sounds/score.mp3";
 // =============
 // khai báo các giá trị ban đầu
 // Khoảng cách giữa 2 ống
-let gap = 85;
+let gap = 125;
 // Tọa độ ống nước dưới
 let constant;
 
@@ -50,8 +50,15 @@ let endGame = false;
 
 document.addEventListener("keydown", moveUp);
 
+function play() {
+    //
+}
+
 function moveUp() {
     bY -= 25;
+    if (bY <= 0) {
+        bY = 0;
+    }
     fly.play();
 }
 
@@ -60,7 +67,7 @@ function draw() {
     if (endGame) {
         return;
     }
-
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
     ctx.drawImage(bg, 0, 0);
 
 
@@ -79,7 +86,7 @@ function draw() {
             });
         }
 
-        if(pipe[i].x < -(pipeNorth.width)) {
+        if (pipe[i].x < -(pipeNorth.width + 10)) {
             pipe.shift();
         }
 
@@ -89,7 +96,7 @@ function draw() {
             endGame = true;
         }
 
-        if(bY >= (cvs.height - fg.height)) {
+        if (bY >= (cvs.height - fg.height)) {
             endGame = true;
         }
 
