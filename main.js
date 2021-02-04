@@ -63,7 +63,7 @@ function createdPipeFirst() {
     for (var i = 0; i < length; i++) {
         pipe.push({
             x: pipeX,
-            y: Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height
+            y: Math.max(Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height, -200)
         });
         pipeX += gap;
     }
@@ -127,7 +127,7 @@ function draw() {
     if (movePipeX == gap) {
         pipe.push({
             x: pipe[pipe.length - 1].x + gap,
-            y: Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height
+            y: Math.max(Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height, -200)
         });
         console.log = "11";
         movePipeX = 0;
