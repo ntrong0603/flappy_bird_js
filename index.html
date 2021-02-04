@@ -8,7 +8,27 @@
 </head>
 
 <body>
-    <canvas id="board" width="288" height="512"></canvas>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        #main-board {
+            position: relative;
+        }
+
+        #btn-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <div id="main-board">
+        <canvas id="board" style="border: 1px solid #000"></canvas>
+        <button type="button" id="btn-play">PLAY</button>
+    </div>
     <script src="main.js"></script>
 </body>
 
